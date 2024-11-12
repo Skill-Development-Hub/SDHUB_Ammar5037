@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -18,12 +20,16 @@ import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DashboardComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatFormField
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
