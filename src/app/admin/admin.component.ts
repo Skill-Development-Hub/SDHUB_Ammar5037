@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -23,7 +22,6 @@ export class AdminComponent {
 
   constructor(
     private router: Router,
-    private AuthService: AuthService
   ) {}
 
   toggleSidenav() {
@@ -31,7 +29,6 @@ export class AdminComponent {
   }
 
   logout() {
-    this.AuthService.logout();
     this.router.navigate(['/signin']);
   }
 }

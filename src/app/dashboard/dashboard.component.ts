@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { StudentsService } from '../students.service';
-
-=======
-import { Component } from '@angular/core';
->>>>>>> 71268b1238df671bce8099338d87f6209f53cec0
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-<<<<<<< HEAD
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
@@ -82,10 +75,3 @@ gettech = () => {
   });
 }
 }
-=======
-  styleUrl: './dashboard.component.css'
-})
-export class DashboardComponent {
-
-}
->>>>>>> 71268b1238df671bce8099338d87f6209f53cec0
