@@ -7,7 +7,22 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
-  { path: '**', redirectTo: '/signin' }
+  { path: '**', redirectTo: '/signin' },
+  {
+    path: '',
+    component: AdminComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'students', component: StudentsComponent },
+      { path: 'trainers', component: TrainersComponent },
+      { path: 'deans', component: DeansComponent },
+      { path: 'courses', component: CoursesComponent },
+      { path: 'news', component: NewsComponent },
+
+      // Add other routes here
+    ]
+  },
 ];
 
 @NgModule({
