@@ -1,0 +1,51 @@
+<div class="signin-container">
+    <mat-card class="signin-card">
+      <mat-card-header>
+        <mat-card-title><strong><em>Sign Up</em></strong></mat-card-title>
+        <mat-card-subtitle><strong><em>Skills Development Hub</em></strong></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Student ID</mat-label>
+                <input matInput formControlName="studentID" type="number" required>
+                <mat-error *ngIf="signupForm.get('studentID')?.hasError('required')">Student ID is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text" required>
+                <mat-error *ngIf="signupForm.get('name')?.hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" type="email" required>
+              <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Please enter a valid email</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
+              <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Number</mat-label>
+                <input matInput formControlName="number" type="number" required>
+                <mat-error *ngIf="signupForm.get('number')?.hasError('required')">Contact Number is required</mat-error>
+            </mat-form-field>
+    
+            <div class="form-actions">
+              <a mat-button color="primary" (click)="forgotPassword()">Forgot Password?</a>
+              <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+            </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+</div>

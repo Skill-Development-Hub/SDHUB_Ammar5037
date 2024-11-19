@@ -1,62 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css'
 })
-export class SigninComponent implements OnInit {
-  signinForm: FormGroup;
+export class SignupComponent implements OnInit {
+  signupForm!: FormGroup;
   hidePassword = true;
   logoPath = 'assets/images/sd-hub-logo.jpg';
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds = 5;
 
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar,
     private UserService: UserService
-  ) {
-    this.signinForm = this.formBuilder.group({
+  ) {}
+
+  ngOnInit(): void {
+    this.signupForm = this.formBuilder.group({
+      studentID: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      number: ['', [Validators.required]]
     });
   }
 
-  ngOnInit(): void {}
-
   onSubmit(): void {
-    if (this.signinForm.valid) {
-      // Implement your signin logic here
-      const { email, password } = this.signinForm.value;
-      console.log('Signin form submitted', this.signinForm.value);
-
-      this.UserService.signin({ email, password }).subscribe({
+    if (this.signupForm.valid) {
+      const {studentID, name, email, password, number} = this.signupForm.value;
+      console.log('Signin form submitted', this.signupForm.value);
+      this.UserService.signup({studentID, name, email, password, number}).subscribe({
         next: (res) => {
           console.log(res);
           this.openSnackBar(res.message);
         },
-        error: (e) => {
-          console.log(e);
-          this.openSnackBar(e.error.message);
+        error: (err) => {
+          console.log(err.error)
+          this.openSnackBar(err.error.message);
         },
         complete: () => {
-          console.log("SignIn Completed");
-          this.router.navigate(['/dashboard']);
-        }
+          console.log("Signup Completed");
+          this.router.navigate(['/signin']);
+        },
       });
-      // Navigate to dashboard or home page after successful signin
-      // this.router.navigate(['/dashboard']);
     }
   }
 
